@@ -38,19 +38,19 @@ class Program
                     AddOrUpdateProperty("VersionPrefix", versionOption.Value());
                     Console.WriteLine($"Setting VersionPrefix to {versionOption.Value()}");
                 }
-                if (runtimesOption.HasValue())
-                {
-                    foreach ()
-                    {
+                //if (runtimesOption.HasValue())
+                //{
+                //    foreach ()
+                //    {
 
-                    }
-                    AddOrUpdateProperty("RuntimeIdentifiers", versionOption.Value());
-                    Console.WriteLine($"Setting VersionPrefix to {versionOption.Value()}");
-                }
+                //    }
+                //    AddOrUpdateProperty("RuntimeIdentifiers", versionOption.Value());
+                //    Console.WriteLine($"Setting VersionPrefix to {versionOption.Value()}");
+                //}
                 if (frameworkOption.HasValue())
                 {
-                    AddOrUpdateProperty("TargetFramework", versionOption.Value());
-                    Console.WriteLine($"Setting TargetFramework to {versionOption.Value()}");
+                    AddOrUpdateProperty("TargetFramework", frameworkOption.Value());
+                    Console.WriteLine($"Setting TargetFramework to {frameworkOption.Value()}");
                 }
 
                 return 0;
