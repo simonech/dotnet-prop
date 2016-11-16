@@ -16,15 +16,11 @@ class Program
 
     static void Main(string[] args)
     {
-        //Environment.SetEnvironmentVariable("MSBUILD_EXE_PATH", @"C:\Program Files (x86)\dotnet\sdk\1.0.0-preview3-004056\MSBuild.dll");
         new Program().Run(args);
     }
 
     public void Run(string[] args)
     {
-
-        //RemoveProperty("Version");
-        //return;
 
         var app = new CommandLineApplication()
         {
@@ -80,12 +76,11 @@ class Program
             command.Description = "Removes a parameter from the project file";
             var versionOption = command.Option("-v|--version", "Removes version number", CommandOptionType.NoValue);
             var runtimesOption = command.Option("-r|--runtime", "Removes supported runtimes", CommandOptionType.NoValue);
-            //var frameworkOption = command.Option("-f|--framework", "Removes supported framework", CommandOptionType.NoValue);
             command.HelpOption("-?|-h|--help");
 
 
             command.OnExecute(() => {
-                if (!versionOption.HasValue() && !runtimesOption.HasValue() && !frameworkOption.HasValue())
+                if (!versionOption.HasValue() && !runtimesOption.HasValue())
                 {
                     command.ShowHelp();
                     return 2;
@@ -98,10 +93,6 @@ class Program
                 if (runtimesOption.HasValue())
                 {
                     RemoveProperty(RUNTIME_IDENTIFIERS);
-                }
-                if (frameworkOption.HasValue())
-                {
-                    RemoveProperty(FRAMEWORK);
                 }
 
                 return 0;
@@ -174,11 +165,8 @@ class Program
             throw new Exception("Unable to find any .csproj file in the current folder");
         }
 
-        Console.WriteLine($"Updating file {projectFile.FullName}");
-
         return ProjectRootElement.Open(
-            //projectFile.FullName,
-            @"C:\Users\user\Documents\GitHub\dotnet-prop\ConsumerApp\ConsumerApp.csproj",
+            projectFile.FullName,            
             ProjectCollection.GlobalProjectCollection
             );
     }
